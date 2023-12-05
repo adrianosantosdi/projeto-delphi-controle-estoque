@@ -4,10 +4,22 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus;
 
 type
-  TForm1 = class(TForm)
+  TfrmPrincipal = class(TForm)
+    MainMenu1: TMainMenu;
+    Sistema1: TMenuItem;
+    Sair1: TMenuItem;
+    Cadastro1: TMenuItem;
+    CadastrodeProdutos1: TMenuItem;
+    Movimentao1: TMenuItem;
+    GerenciarMovimentaes1: TMenuItem;
+    ConsultarMovimentaes1: TMenuItem;
+    procedure Sair1Click(Sender: TObject);
+    procedure CadastrodeProdutos1Click(Sender: TObject);
+    procedure GerenciarMovimentaes1Click(Sender: TObject);
+    procedure ConsultarMovimentaes1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -15,10 +27,32 @@ type
   end;
 
 var
-  Form1: TForm1;
+  frmPrincipal: TfrmPrincipal;
 
 implementation
 
 {$R *.dfm}
+
+uses unitCadProduto, DM, unitCadMovimentacao, unitConsMovimentacao;
+
+procedure TfrmPrincipal.CadastrodeProdutos1Click(Sender: TObject);
+begin
+  frmCadProdutos.ShowModal;
+end;
+
+procedure TfrmPrincipal.ConsultarMovimentaes1Click(Sender: TObject);
+begin
+  frmConstMovimentacao.ShowModal;
+end;
+
+procedure TfrmPrincipal.GerenciarMovimentaes1Click(Sender: TObject);
+begin
+  frmCadMovimentacao.ShowModal;
+end;
+
+procedure TfrmPrincipal.Sair1Click(Sender: TObject);
+begin
+  Application.Terminate;
+end;
 
 end.

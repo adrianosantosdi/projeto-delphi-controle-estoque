@@ -1,0 +1,18 @@
+program Estoque;
+
+uses
+  Vcl.Forms,
+  unitPrincipal in 'unitPrincipal.pas' {frmPrincipal},
+  unitCadProduto in 'unitCadProduto.pas' {frmCadProdutos},
+  unitCadMovimentacao in 'unitCadMovimentacao.pas' {Form1};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmCadProdutos, frmCadProdutos);
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

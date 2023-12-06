@@ -1,0 +1,203 @@
+object frmConstMovimentacao: TfrmConstMovimentacao
+  Left = 0
+  Top = 0
+  Caption = 'Consulta de Movimenta'#231#227'o'
+  ClientHeight = 604
+  ClientWidth = 845
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object lblTotalMovimentacoes: TLabel
+    Left = 32
+    Top = 512
+    Width = 340
+    Height = 33
+    Caption = 'Total de Movimenta'#231#245'es:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lblTotal: TLabel
+    Left = 384
+    Top = 512
+    Width = 34
+    Height = 33
+    Caption = '00'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object pnl: TPanel
+    Left = 0
+    Top = 0
+    Width = 845
+    Height = 97
+    Align = alTop
+    TabOrder = 0
+    ExplicitWidth = 748
+    object lblConsultarMovimentacoes: TLabel
+      Left = 8
+      Top = 26
+      Width = 350
+      Height = 33
+      Caption = 'Consultar Movimentac'#245'es'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+  end
+  object pnl2: TPanel
+    Left = 0
+    Top = 97
+    Width = 845
+    Height = 96
+    Align = alTop
+    TabOrder = 1
+    ExplicitWidth = 748
+    object lblDataInicial: TLabel
+      Left = 32
+      Top = 21
+      Width = 92
+      Height = 13
+      Caption = 'Digite a Data Inicial'
+    end
+    object lblDataFinal: TLabel
+      Left = 184
+      Top = 21
+      Width = 87
+      Height = 13
+      Caption = 'Digite a Data Final'
+    end
+    object medtInicial: TMaskEdit
+      Left = 32
+      Top = 40
+      Width = 120
+      Height = 21
+      EditMask = '##/##/####;1;_'
+      MaxLength = 10
+      TabOrder = 0
+      Text = '  /  /    '
+    end
+    object medtFinal: TMaskEdit
+      Left = 184
+      Top = 40
+      Width = 120
+      Height = 21
+      EditMask = '##/##/####;1;_'
+      MaxLength = 10
+      TabOrder = 1
+      Text = '  /  /    '
+    end
+    object btnConsultarMovimentacoes: TButton
+      Left = 416
+      Top = 24
+      Width = 217
+      Height = 49
+      Caption = 'Consultar Movimenta'#231#227'o'
+      TabOrder = 2
+      OnClick = btnConsultarMovimentacoesClick
+    end
+  end
+  object dbgrd1: TDBGrid
+    Left = 32
+    Top = 216
+    Width = 369
+    Height = 249
+    DataSource = Dmodule.dsSqlMovimentacoes
+    TabOrder = 2
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'tipo'
+        Title.Caption = 'TIPO'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 105
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'data_hora'
+        Title.Caption = 'DATA E HORA'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 127
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'responsavel'
+        Title.Caption = 'RESPONS'#192'VEL'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end>
+  end
+  object dbgrd2: TDBGrid
+    Left = 456
+    Top = 216
+    Width = 369
+    Height = 249
+    DataSource = Dmodule.dsSqlMovProdutos
+    TabOrder = 3
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'nomeProduto'
+        Title.Caption = 'PRODUTO'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 247
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'quantidade'
+        Title.Caption = 'QUANTIDADE'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -13
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Visible = True
+      end>
+  end
+end

@@ -22,6 +22,7 @@ type
     Label6: TLabel;
     DBEdit5: TDBEdit;
     DBGrid1: TDBGrid;
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,5 +37,10 @@ implementation
 {$R *.dfm}
 
 uses DM;
+
+procedure TfrmCadProdutos.FormShow(Sender: TObject);
+begin
+  Dmodule.QryProdutos.Refresh;
+end;
 
 end.

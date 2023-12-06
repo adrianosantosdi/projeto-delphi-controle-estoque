@@ -1,0 +1,52 @@
+unit unitConsMovimentacao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask,
+  Data.DB, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TfrmConstMovimentacao = class(TForm)
+    pnl: TPanel;
+    lblConsultarMovimentacoes: TLabel;
+    pnl2: TPanel;
+    medtInicial: TMaskEdit;
+    medtFinal: TMaskEdit;
+    lblDataInicial: TLabel;
+    lblDataFinal: TLabel;
+    btnConsultarMovimentacoes: TButton;
+    dbgrd1: TDBGrid;
+    dbgrd2: TDBGrid;
+    lblTotalMovimentacoes: TLabel;
+    lblTotal: TLabel;
+    procedure btnConsultarMovimentacoesClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmConstMovimentacao: TfrmConstMovimentacao;
+
+implementation
+
+{$R *.dfm}
+
+uses DM;
+
+procedure TfrmConstMovimentacao.btnConsultarMovimentacoesClick(Sender: TObject);
+begin
+  Dmodule.sqlMovimentaoes.Close;
+  Dmodule.sqlMovimentaoes.SQL.Clear;
+  Dmodule.sqlMovimentaoes.SQL.Text := 'SELECT * from movimentacoes WHERE Date(data_hora) BETWEEN :pDatainicial AND :pDataFinal';
+  Dmodule.sqlMovimentaoes.ParamByName('pDataInicial').Value := FormatDateTime('YYYY-MM-DD', StrToDate(medtInicial.Text));
+  Dmodule.sqlMovimentaoes.ParamByName('pDataFinal').Value := FormatDateTime('YYYY-MM-DD', StrToDate(medtFinal.Text));
+  Dmodule.sqlMovimentaoes.Open;
+
+  lblTotal.Caption := IntToStr(Dmodule.sqlMovimentaoes.RecordCount);
+end;
+
+end.

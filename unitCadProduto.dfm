@@ -14,6 +14,7 @@ object frmCadProdutos: TfrmCadProdutos
   Font.Style = []
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -87,7 +88,7 @@ object frmCadProdutos: TfrmCadProdutos
   end
   object Label6: TLabel
     Left = 24
-    Top = 304
+    Top = 312
     Width = 128
     Height = 19
     Caption = 'ESTOQUE ATUAL'
@@ -110,7 +111,7 @@ object frmCadProdutos: TfrmCadProdutos
   end
   object DBEdit1: TDBEdit
     Left = 24
-    Top = 87
+    Top = 95
     Width = 82
     Height = 27
     DataField = 'id'
@@ -126,7 +127,7 @@ object frmCadProdutos: TfrmCadProdutos
   end
   object DBEdit2: TDBEdit
     Left = 24
-    Top = 144
+    Top = 152
     Width = 394
     Height = 27
     DataField = 'nome'
@@ -141,7 +142,7 @@ object frmCadProdutos: TfrmCadProdutos
   end
   object DBEdit3: TDBEdit
     Left = 24
-    Top = 201
+    Top = 210
     Width = 394
     Height = 27
     DataField = 'fabricante'
@@ -156,7 +157,7 @@ object frmCadProdutos: TfrmCadProdutos
   end
   object DBEdit4: TDBEdit
     Left = 24
-    Top = 264
+    Top = 271
     Width = 132
     Height = 27
     DataField = 'validade'
@@ -171,8 +172,8 @@ object frmCadProdutos: TfrmCadProdutos
     TabOrder = 4
   end
   object DBEdit5: TDBEdit
-    Left = 24
-    Top = 320
+    Left = 22
+    Top = 337
     Width = 134
     Height = 27
     DataField = 'estoque_atual'

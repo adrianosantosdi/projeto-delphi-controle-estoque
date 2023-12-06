@@ -24,6 +24,7 @@ object Dmodule: TDmodule
       FieldName = 'id'
       Origin = 'id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object QryProdutosnome: TStringField
       AutoGenerateValue = arDefault
@@ -73,42 +74,193 @@ object Dmodule: TDmodule
   end
   object QryMovimentacoes: TFDQuery
     Active = True
+    BeforeDelete = QryMovimentacoesBeforeDelete
+    AfterScroll = QryMovimentacoesAfterScroll
     Connection = FDConn
     SQL.Strings = (
       'select * from movimentacoes')
     Left = 304
     Top = 72
+    object QryMovimentacoesid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object QryMovimentacoestipo: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tipo'
+      Origin = 'tipo'
+    end
+    object QryMovimentacoesdata_hora: TDateTimeField
+      AutoGenerateValue = arDefault
+      FieldName = 'data_hora'
+      Origin = 'data_hora'
+    end
+    object QryMovimentacoesresponsavel: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'responsavel'
+      Origin = 'responsavel'
+      Size = 30
+    end
+    object QryMovimentacoesobservacoes: TMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'observacoes'
+      Origin = 'observacoes'
+      BlobType = ftMemo
+    end
   end
   object QryMovimentacoesProdutos: TFDQuery
     Active = True
+    AfterPost = QryMovimentacoesProdutosAfterPost
+    BeforeDelete = QryMovimentacoesProdutosBeforeDelete
+    AfterDelete = QryMovimentacoesProdutosAfterDelete
+    IndexFieldNames = 'id_movimentacao'
+    MasterSource = dsMovimentacoes
+    MasterFields = 'id'
     Connection = FDConn
     SQL.Strings = (
       'select * from movimentacoes_produtos')
     Left = 448
     Top = 80
+    object QryMovimentacoesProdutosid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object QryMovimentacoesProdutosid_movimentacao: TIntegerField
+      FieldName = 'id_movimentacao'
+      Origin = 'id_movimentacao'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object QryMovimentacoesProdutosid_produto: TIntegerField
+      FieldName = 'id_produto'
+      Origin = 'id_produto'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object QryMovimentacoesProdutosquantidade: TIntegerField
+      FieldName = 'quantidade'
+      Origin = 'quantidade'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object QryMovimentacoesProdutosnomeProduto: TStringField
+      FieldKind = fkLookup
+      FieldName = 'nomeProduto'
+      LookupDataSet = QryProdutos
+      LookupKeyFields = 'id'
+      LookupResultField = 'nome'
+      KeyFields = 'id_produto'
+      Size = 50
+      Lookup = True
+    end
   end
   object sqlAumentaEstoque: TFDCommand
     Connection = FDConn
+    CommandText.Strings = (
+      
+        'UPDATE produtos SET estoque_atual = estoque_atual + :pQtd WHERE ' +
+        'id = :pId')
     ParamData = <
       item
-        Name = 'pId'
+        Name = 'pQtd'
+        ParamType = ptInput
       end
       item
-        Name = 'pQtd'
+        Name = 'pId'
+        ParamType = ptInput
       end>
     Left = 64
     Top = 312
   end
   object sqlDiminueEstoque: TFDCommand
     Connection = FDConn
+    CommandText.Strings = (
+      
+        'UPDATE produtos SET estoque_atual = estoque_atual + :pQtd WHERE ' +
+        'id = :pId')
     ParamData = <
       item
-        Name = 'pId'
+        Name = 'pQtd'
+        ParamType = ptInput
       end
       item
-        Name = 'pQtd'
+        Name = 'pId'
+        ParamType = ptInput
       end>
-    Left = 176
+    Left = 64
+    Top = 384
+  end
+  object sqlMovimentaoes: TFDQuery
+    Active = True
+    Connection = FDConn
+    SQL.Strings = (
+      'select * from movimentacoes')
+    Left = 264
     Top = 312
+    ParamData = <
+      item
+        Name = 'pDataInicial'
+      end
+      item
+        Name = 'pDataFinal'
+      end>
+  end
+  object dsSqlMovimentacoes: TDataSource
+    DataSet = sqlMovimentaoes
+    Left = 264
+    Top = 384
+  end
+  object sqlMovProdutos: TFDQuery
+    Active = True
+    IndexFieldNames = 'id_movimentacao'
+    MasterSource = dsSqlMovimentacoes
+    MasterFields = 'id'
+    Connection = FDConn
+    SQL.Strings = (
+      'select * from movimentacoes_produtos')
+    Left = 400
+    Top = 320
+    object sqlMovProdutosid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object sqlMovProdutosid_movimentacao: TIntegerField
+      FieldName = 'id_movimentacao'
+      Origin = 'id_movimentacao'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sqlMovProdutosid_produto: TIntegerField
+      FieldName = 'id_produto'
+      Origin = 'id_produto'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sqlMovProdutosquantidade: TIntegerField
+      FieldName = 'quantidade'
+      Origin = 'quantidade'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object sqlMovProdutosnomeProduto: TStringField
+      FieldKind = fkLookup
+      FieldName = 'nomeProduto'
+      LookupDataSet = QryProdutos
+      LookupKeyFields = 'id'
+      LookupResultField = 'nome'
+      KeyFields = 'id_produto'
+      Size = 50
+      Lookup = True
+    end
+  end
+  object dsSqlMovProdutos: TDataSource
+    DataSet = sqlMovProdutos
+    Left = 400
+    Top = 392
   end
 end

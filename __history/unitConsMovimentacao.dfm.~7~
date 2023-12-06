@@ -1,0 +1,138 @@
+object frmConstMovimentacao: TfrmConstMovimentacao
+  Left = 0
+  Top = 0
+  Caption = 'Consulta de Movimenta'#231#227'o'
+  ClientHeight = 585
+  ClientWidth = 780
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object lblTotalMovimentacoes: TLabel
+    Left = 32
+    Top = 512
+    Width = 340
+    Height = 33
+    Caption = 'Total de Movimenta'#231#245'es:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lblQuantidade: TLabel
+    Left = 384
+    Top = 512
+    Width = 34
+    Height = 33
+    Caption = '00'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object pnl: TPanel
+    Left = 0
+    Top = 0
+    Width = 780
+    Height = 97
+    Align = alTop
+    TabOrder = 0
+    object lblConsultarMovimentacoes: TLabel
+      Left = 8
+      Top = 26
+      Width = 350
+      Height = 33
+      Caption = 'Consultar Movimentac'#245'es'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+  end
+  object pnl2: TPanel
+    Left = 0
+    Top = 97
+    Width = 780
+    Height = 96
+    Align = alTop
+    TabOrder = 1
+    ExplicitLeft = -8
+    object lblDataInicial: TLabel
+      Left = 32
+      Top = 21
+      Width = 92
+      Height = 13
+      Caption = 'Digite a Data Inicial'
+    end
+    object lblDataFinal: TLabel
+      Left = 184
+      Top = 21
+      Width = 87
+      Height = 13
+      Caption = 'Digite a Data Final'
+    end
+    object medtInicial: TMaskEdit
+      Left = 32
+      Top = 40
+      Width = 120
+      Height = 21
+      EditMask = '##/##/####;1;_'
+      MaxLength = 10
+      TabOrder = 0
+      Text = '  /  /    '
+    end
+    object medtFinal: TMaskEdit
+      Left = 184
+      Top = 40
+      Width = 120
+      Height = 21
+      EditMask = '##/##/####;1;_'
+      MaxLength = 10
+      TabOrder = 1
+      Text = '  /  /    '
+    end
+    object btnConsultarMovimentacoes: TButton
+      Left = 416
+      Top = 24
+      Width = 217
+      Height = 49
+      Caption = 'Consultar Movimenta'#231#227'o'
+      TabOrder = 2
+    end
+  end
+  object dbgrd1: TDBGrid
+    Left = 32
+    Top = 216
+    Width = 320
+    Height = 257
+    TabOrder = 2
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object dbgrd2: TDBGrid
+    Left = 384
+    Top = 216
+    Width = 345
+    Height = 257
+    TabOrder = 3
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+end
